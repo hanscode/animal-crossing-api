@@ -1,0 +1,228 @@
+/** 
+ * Treehouse Code Adventures
+ * Animal Crossing API - CSS
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Font Family */
+  --global--font-primary: "Rubik", sans-serif;
+  /* Colors */
+  --primary_background: #fdf8e7;
+  --villager_border_blue: #89cff0;
+  --villager_border_pink: #ffc1cc;
+  --primary_text: #6b5c43;
+  --species_background: #ffa500;
+  --personality_background: #107896;
+  --hobby_background: #9a2617;
+  --birthday_background: #829356;
+}
+
+body {
+  background-color: var(--primary_background);
+  font-family: var(--global--font-primary);
+}
+
+section {
+  background-image: url("../assets/animal-crossing-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  width: 100%;
+}
+
+.section-container {
+  max-width: 1120px;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin: 0 auto;
+  padding: 100px 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.villager_card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-size: cover;
+  align-items: center;
+  background-image: url("../assets/animal-crossing-wood-bg.png");
+  max-width: 1080px;
+  max-height: 1728px;
+  min-height: 1000px;
+  padding: 50px 30px 50px 30px;
+  text-align: center;
+  width: 600px;
+}
+
+.villager_icon__wrapper {
+  display: flex;
+  text-align: left;
+  max-width: 100%;
+  background-color: var(--primary_background);
+  z-index: 99;
+  position: absolute;
+  top: -50px;
+  width: 150px;
+  height: 150px;
+  box-shadow: 0px 0px 8px 0px rgba(0 0 0 / 30%);
+  border: 3px solid var(--villager_border_pink); /* Needs to be dynamic */
+  border-radius: 50%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+}
+.villager_icon__image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0;
+  border: none;
+}
+.villager_icon__image img {
+  width: 120px;
+  height: 120px;
+}
+.chat_bubble {
+  display: flex;
+  text-align: left;
+  max-width: 100%;
+  position: relative;
+  background-size: cover;
+  width: 100%;
+  padding-top: 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.chat_bubble img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.villager_quote {
+  z-index: 1;
+  position: absolute;
+  max-width: 360px;
+  color: var(--primary_text);
+  font-family: var(--global--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+}
+.villager_tag_div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 100%;
+  background-size: cover;
+  z-index: 9;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(-10deg);
+  background-color: #d86808; /* Needs to be dynamic */
+  width: 127px;
+  padding: 8px 12px 8px 12px;
+  border-radius: 24px;
+}
+.villager_tag_name {
+  color: var(--primary_background); /* Needs to be dynamic */
+  font-family: var(--global--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+}
+.species_bg {
+  background-color: var(--species_background);
+}
+.personality_bg {
+  background-color: var(--personality_background);
+}
+.hobby_bg {
+  background-color: var(--hobby_background);
+}
+.birthday_bg {
+  background-color: var(--birthday_background);
+}
+
+.villager_details>div {
+  padding: 8px;
+}
+
+.villager_details {
+  box-shadow: 0px 0px 0px 10px rgba(0, 0, 0, 0.08) inset;
+  padding: 8px 8px 8px 8px;
+  border-radius: 8px;
+  margin-top: 20px;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+
+.villager_attribute {
+  display: flex;
+  padding-left: 10px;
+  justify-content: center;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
+  width: calc(30% - 0px * ((2 - 1) / 2));
+  position: relative;
+  color: var(--primary_background);
+  font-family: var(--global--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+}
+.villager_data {
+  background-color: var(--primary_background);
+  gap: 15px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 8px;
+  display: flex;
+  text-align: left;
+  width: calc(70% - 0px * ((2 - 1) / 2));
+  position: relative;
+  color: var(--primary_text);
+  font-family: var(--global--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+}
+.villager_data_icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0;
+  border: none;
+}
+.villager_data_icon img {
+  width: 40px;
+  height: 40px;
+}
