@@ -16,6 +16,7 @@
   --primary_background: #fdf8e7;
   --villager_border_blue: #89cff0;
   --villager_border_pink: #ffc1cc;
+  --villager_tag_color: #d86808;
   --primary_text: #6b5c43;
   --species_background: #ffa500;
   --personality_background: #107896;
@@ -140,13 +141,11 @@ section {
   top: 0px;
   left: 0px;
   transform: rotateX(0deg) rotateY(0deg) rotateZ(-10deg);
-  background-color: #d86808; /* Needs to be dynamic */
   width: 127px;
   padding: 8px 12px 8px 12px;
   border-radius: 24px;
 }
 .villager_tag_name {
-  color: var(--primary_background); /* Needs to be dynamic */
   font-family: var(--global--font-primary);
   font-size: 20px;
   font-weight: 700;
