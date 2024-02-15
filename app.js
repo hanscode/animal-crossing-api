@@ -4,6 +4,7 @@ Animal Crossing API
 Author - Hans Steffens
 ******************************************/
 
+/** Header Parameters required for accessing to the Nookipedia API.  */
 const options = {
   headers: {
     "Content-Type": "application/json",
@@ -33,8 +34,8 @@ async function getJSON(url, options) {
 }
 
 getJSON("https://api.nookipedia.com/villagers?nhdetails=true", options)
-  .then(data => generateVillager(data))
-  .catch(error => console.log("Looks like there was a problem!", error));
+  .then((data) => generateVillager(data))
+  .catch((error) => console.log("Looks like there was a problem!", error));
 
 // ------------------------------------------
 //  HELPER FUNCTIONS
@@ -52,58 +53,56 @@ function getRandomVillager(array) {
 function generateVillager(data) {
   const villagers = data.filter((villager) => villager.nh_details !== null);
   const villager = getRandomVillager(villagers);
-  console.log(villager);
+  const attributes = ["species", "personality", "birthday", "hobby"];
+  const birthday = `${villager.birthday_month} ${villager.birthday_day}`;
+  const hobby = `${villager.nh_details.hobby}`;
+
+  // Insert chat bubble at the top of the card.
   card.insertAdjacentHTML(
     "afterbegin",
-`<div class="villager_icon__wrapper">
-    <figure class="villager_icon__image">
-        <img src="${ villager.nh_details.icon_url }" width="128" height="128">
-    </figure>
-</div>
+    `<div class="villager_icon__wrapper">
+        <figure class="villager_icon__image">
+            <img src="${villager.nh_details.icon_url}" width="128" height="128">
+         </figure>
+    </div>
 
-<div class="chat_bubble">
-    <div class="villager_quote">${villager.quote}<br>"<em>${villager.phrase}</em>"</div>
-    <img src="assets/chat-bubble.png" alt="bubble">
-    <div class="villager_tag_div" style="background-color:#${villager.title_color};">
-        <div class="villager_tag_name" style="color:#${villager.text_color};">${villager.name}</div>
-    </div>
-</div>
-
-<div class="villager_details species_bg">
-    <div class="villager_attribute">Species</div>
-    <div class="villager_data">
-        <figure class="villager_data_icon">
-            <img src="assets/paw-print.svg" alt="paw">
-        </figure>
-        <span>${villager.species}</span>
-    </div>
-</div>
-<div class="villager_details personality_bg">
-    <div class="villager_attribute">Personality</div>
-    <div class="villager_data">
-        <figure class="villager_data_icon">
-            <img src="assets/personality.svg" alt="paw">
-        </figure>
-        <span>${villager.personality}</span>
-    </div>
-</div>
-<div class="villager_details hobby_bg">
-    <div class="villager_attribute">Hobby</div>
-    <div class="villager_data">
-        <figure class="villager_data_icon">
-            <img src="assets/${villager.nh_details.hobby}.svg" alt="paw">
-        </figure>
-        <span>${villager.nh_details.hobby}</span>
-    </div>
-</div>
-<div class="villager_details birthday_bg">
-    <div class="villager_attribute">Birthday</div>
-    <div class="villager_data">
-        <figure class="villager_data_icon">
-            <img src="assets/birthday-cake.svg" alt="paw">
-        </figure>
-        <span>${villager.birthday_month} ${villager.birthday_day}</span>
-    </div>
-</div>`
+    <div class="chat_bubble">
+        <div class="villager_quote">
+            ${villager.quote}<br>"<em>${villager.phrase}</em>"
+        </div>
+        <img src="assets/chat-bubble.png" alt="bubble">
+        <div class="villager_tag_div" style="background-color:#${villager.title_color};">
+            <div class="villager_tag_name" style="color:#${villager.text_color};">
+                ${villager.name}
+            </div>
+        </div>
+    </div>`
   );
+
+  // Insert villager attributes below the chat bubble.
+  attributes.map((attribute) => {
+    card.insertAdjacentHTML(
+      "beforeend",
+      `<div class="villager_details ${attribute}_bg">
+            <div class="villager_attribute">${attribute}</div>
+            <div class="villager_data">
+                <figure class="villager_data_icon">
+                    <img src="${
+                      attribute == "hobby"
+                        ? "assets/" + hobby + ".svg"
+                        : "assets/" + attribute + ".svg"
+                    }" alt="icon">
+                </figure>
+                <span>${
+                  attribute == "birthday"
+                    ? birthday
+                    : attribute == "hobby"
+                    ? hobby
+                    : villager[attribute]
+                }</span>
+            </div>
+        </div>
+        `
+    );
+  });
 }

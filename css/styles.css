@@ -193,6 +193,7 @@ section {
   position: relative;
   color: var(--primary_background);
   font-family: var(--global--font-primary);
+  text-transform: capitalize;
   font-size: 20px;
   font-weight: 400;
 }
